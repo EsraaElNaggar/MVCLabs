@@ -15,18 +15,18 @@ namespace MVC0.Controllers
     public class HomeController : Controller
     {
         [HttpGet]
-        public ActionResult Index()
+        public ViewResult Index()
         {
             var result = new ViewResult();
             return result;
         }
         [HttpGet]
-        public ActionResult RegForm()
+        public ViewResult RegForm()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult RegForm(User user)
+        public ViewResult RegForm(User user)
         {
             if (user.name != null && user.email != null && user.password != null)
             {
@@ -35,7 +35,6 @@ namespace MVC0.Controllers
             }
             return View();
         }
-
         //// GET: Home
         //public ActionResult Index()
         //{
