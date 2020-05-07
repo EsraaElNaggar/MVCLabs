@@ -1,0 +1,45 @@
+﻿@using MVC3.Models
+@model Employee
+
+@{
+    ViewBag.Title = "Employees | Add";
+}
+
+
+<br />
+<h2>Add New Employee</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Salary">Salary</label>
+                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Salary, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                @Html.EnumDropDownListFor(m => m.Gender, "Select Gender", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Gender, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Address, null, new { @class = "text-danger" })
+            </div>
+            <input type="submit" value="add" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", "Employees", null, new { @class = "btn btn-secondary" })
+        </form>
+    </div>
+</div>
+

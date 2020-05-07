@@ -1,0 +1,44 @@
+﻿@using MVC3.Models
+@model List<Employee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+
+<br />
+<h2>Employees</h2>
+<br />
+@Html.ActionLink("+Add new employee", "Add", "Employees", null, new { @class = "btn btn-primary" })
+<hr />
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Employee employee in Model)
+            {
+                @Html.Partial("_EmployeePartial", employee)
+                //Html.RenderPartial("_EmployeePartial", employee);
+               @*@Html.Action("EmployeePartial", new { id = employee.Id})*@
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No Employees yet...
+    </div>
+}
