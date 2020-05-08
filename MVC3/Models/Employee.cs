@@ -30,5 +30,7 @@ namespace MVC3.Models
         
         [MaxLength(256)]
         public string Address { get; set; }
+
+        
     }
 }

@@ -1,17 +1,17 @@
-﻿@using MVC3.Models
-@model Employee
+﻿@model MVC3.Models.Employee
 
 @{
-    ViewBag.Title = "Employees | Add";
+    ViewBag.Title = ViewBag.Action + "Employee";
 }
 
-
 <br />
-<h2>Add New Employee</h2>
+<h2>@ViewBag.Action Employee</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+
+        @using (@Html.BeginForm())
+        {
             <div class="form-group">
                 <label for="Name">Name</label>
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
@@ -37,9 +37,15 @@
                 @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Address, null, new { @class = "text-danger" })
             </div>
-            <input type="submit" value="add" class="btn btn-primary" />
+            <input type="submit" value="@ViewBag.Action" class="btn btn-primary" />
             @Html.ActionLink("Back to List", "Index", "Employees", null, new { @class = "btn btn-secondary" })
-        </form>
+
+        }
+
     </div>
 </div>
 
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

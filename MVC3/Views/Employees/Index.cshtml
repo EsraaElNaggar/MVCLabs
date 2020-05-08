@@ -12,6 +12,13 @@
 @Html.ActionLink("+Add new employee", "Add", "Employees", null, new { @class = "btn btn-primary" })
 <hr />
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+
 @if (Model != null && Model.Count > 0)
 {
 
@@ -42,3 +49,31 @@ else
         No Employees yet...
     </div>
 }
+
+@section Scripts{
+    <script>
+        function confirmDelete(id) {
+            let res = confirm("Are you sure?");
+            if (res) {
+                $.ajax({
+                    url: `/Employees/Delete/${id}`,
+                    type: "POST",
+                    success: function (response) {
+                        if (res) {
+                            let tr = $(`#${id}`)
+                            tr.remove();
+                        }
+                    },
+                    error: function (xhr, status, err) {
+                        console.log(error);
+                    }
+                })
+
+
+
+
+                @*location.href = "@Url.Action("Delete", "Employees")/" + id;*@
+            }
+        }
+    </script>
+    }
