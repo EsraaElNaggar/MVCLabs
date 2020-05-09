@@ -10,5 +10,6 @@ namespace MVC3.ViewModels
     {
         public List<Employee> Employees { get; set; }
         public Employee Employee { get; set; }
+        public List<Departments> Departments { get; set; }
     }
 }

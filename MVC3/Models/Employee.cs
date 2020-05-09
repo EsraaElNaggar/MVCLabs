@@ -30,8 +30,12 @@ namespace MVC3.Models
         public int Salary { get; set; }
         
         [MaxLength(256)]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
-        
+        [Display(Name= "Department")]
+        [ForeignKey("Departments")]
+        public int FK_DepartmentsID { get; set; }
+        public virtual Departments Departments { get; set; }
     }
 }

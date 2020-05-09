@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width">
     <title>My App | @ViewBag.Title </title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Bundles/Styles")
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"  />
     <style>
         .input-validation-error{
@@ -38,11 +38,7 @@
     <div class="container">
         @RenderBody()
     </div>
-    <script src="~/Scripts/jquery-3.5.0.min.js"></script>
-    @*<script src="~/Scripts/popper.min.js"></script>*@
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @Scripts.Render("~/Bundles/Scripts")
     @RenderSection("Scripts", false)
 </body>
 </html>

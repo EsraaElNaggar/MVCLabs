@@ -34,10 +34,12 @@ namespace MVC3.Controllers
             return View();
         }
         [HttpGet]
+        [HandleError]
         public ViewResult About()
         {
-            var result = new ViewResult();
-            return result;
+            throw new Exception("Custom Ex");
+            //var result = new ViewResult();
+            //return result;
         }
     }
 }
