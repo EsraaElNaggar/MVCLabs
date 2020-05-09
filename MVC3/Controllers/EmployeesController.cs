@@ -6,16 +6,22 @@ using System.Web;
 using System.Web.Mvc;
 using MVC3.DAL;
 using MVC3.Models;
+using MVC3.ViewModels;
 
 namespace MVC3.Controllers
 {
     public class EmployeesController : Controller
     {
         ApplicationDBContext context = new ApplicationDBContext();
+        
         [HttpGet]
         public ActionResult Index()
         {
-            return View(context.Employees.ToList());
+            EmployeeViewModel employeeVM = new EmployeeViewModel
+            {
+                Employees = context.Employees.ToList()
+            };
+            return View(employeeVM);
         }
         //[ChildActionOnly]
         //public PartialViewResult EmployeePartial(int Id)
@@ -42,7 +48,21 @@ namespace MVC3.Controllers
                 //return View("Index", context.Employees.ToList());
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Action = "Add";
             return View("EmployeeForm");
+        }
+        
+        [HttpPost]
+        public ActionResult AddAjax(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Employees.Add(employee);
+                context.SaveChanges();
+                return PartialView("_EmployeePartial", employee);
+            }
+            ViewBag.Action = "Add";
+            return Json(ModelState);
         }
         
         [HttpGet]
@@ -56,6 +76,7 @@ namespace MVC3.Controllers
             }
             return HttpNotFound("Employee not found");
         }
+
         [HttpPost]
         //public ActionResult EditPost(Employee employee)
         public ActionResult Edit(Employee employee)
@@ -84,5 +105,6 @@ namespace MVC3.Controllers
             }
             return HttpNotFound("Employee not found");
         }
+
     }
 }

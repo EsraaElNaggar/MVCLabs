@@ -26,6 +26,7 @@ namespace MVC3.Models
         public Gender Gender { get; set; }
         
         [Range(2500, 50000)]
+        [DataType(DataType.Currency)]
         public int Salary { get; set; }
         
         [MaxLength(256)]

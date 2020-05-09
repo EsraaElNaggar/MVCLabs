@@ -13,5 +13,6 @@ namespace MVC3.DAL
         }
 
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
     }
 }
